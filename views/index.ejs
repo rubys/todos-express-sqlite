@@ -11,7 +11,7 @@
 		<section class="todoapp">
 			<header class="header">
 				<h1>todos</h1>
-				<form action="/" method="post">
+				<form action=<%= home %> method="post">
 					<input class="new-todo" name="title" placeholder="What needs to be done?" autofocus>
 					<% if (filter) { %>
 					<input type="hidden" name="filter" value="<%= filter %>"/>
@@ -20,7 +20,7 @@
 			</header>
 			<% if (activeCount + completedCount > 0) { %>
 			<section class="main">
-				<form action="/toggle-all" method="post">
+				<form action="<%= home %>toggle-all" method="post">
 					<input id="toggle-all" class="toggle-all" type="checkbox" name="completed" <%- activeCount == 0 ? 'checked' : '' %> onchange="this.form.submit();">
 					<label for="toggle-all">Mark all as complete</label>
 					<% if (filter) { %>
@@ -56,20 +56,20 @@
 				<span class="todo-count"><strong><%= activeCount %></strong> <%= pluralize('item', activeCount) %> left</span>
 				<ul class="filters">
 					<li>
-						<a <%- !filter ? 'class="selected"' : '' %> href="/">All</a>
+						<a <%- !filter ? 'class="selected"' : '' %> href=<%= home %>>All</a>
 					</li>
 					<li>
-						<a <%- filter == 'active' ? 'class="selected"' : '' %> href="/active">Active</a>
+						<a <%- filter == 'active' ? 'class="selected"' : '' %> href="<%= home %>active">Active</a>
 					</li>
 					<li>
-						<a <%- filter == 'completed' ? 'class="selected"' : '' %> href="/completed">Completed</a>
+						<a <%- filter == 'completed' ? 'class="selected"' : '' %> href="<%= home %>completed">Completed</a>
 					</li>
 				</ul>
 				<% if (completedCount > 0) { %>
-				<form action="/clear-completed" method="post">
+				<form action="<%= home %>clear-completed" method="post">
 					<button class="clear-completed">Clear completed</button>
 					<% if (filter) { %>
-					<input type="hidden" name="filter" value="<%= filter %>"/>
+					<input type="hidden" name="filter" value="<%= filter %>"<%= home %>>
 					<% } %>
 				</form>
 				<% } %>
